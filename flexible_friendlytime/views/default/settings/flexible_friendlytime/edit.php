@@ -54,7 +54,7 @@ echo "<label>" . elgg_echo('flexible_friendlytime:label:format1') . "</label><br
 
 $params = array(
   'name' => 'params[format1]',
-  'value' => !empty($vars['entity']->format1) ? $vars['entity']->format1 : 0,
+  'value' => !empty($vars['entity']->format1) ? $vars['entity']->format1 : 1,
   'options_values' => $options_values, 
 );
 
@@ -72,7 +72,7 @@ echo "<br><br>";
 echo "<label>" . elgg_echo('flexible_friendlytime:label:format2') . "</label><br>";
 
 $params['name'] = 'params[format2]';
-$params['value'] = !empty($vars['entity']->format2) ? $vars['entity']->format2 : 0;
+$params['value'] = !empty($vars['entity']->format2) ? $vars['entity']->format2 : 1;
 echo elgg_view('input/pulldown', $params);
 
 echo "&nbsp;&nbsp;&nbsp;&nbsp;";
