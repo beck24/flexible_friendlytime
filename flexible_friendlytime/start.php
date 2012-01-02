@@ -64,7 +64,7 @@ function flexible_friendlytime_hook_handler($hook, $type, $return, $params) {
       $check = $format1;
     }
     else{
-      return date($format1override, $modtime);
+      return flexible_friendlytime_translate($format1override, $modtime);
     }
   }
   
@@ -73,7 +73,7 @@ function flexible_friendlytime_hook_handler($hook, $type, $return, $params) {
       $check = $format2;
     }
     else{
-      return date($format2override, $modtime);
+      return flexible_friendlytime_translate($format2override, $modtime);
     }
   }
   
