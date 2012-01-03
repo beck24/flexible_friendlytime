@@ -6,3 +6,6 @@ Initial release
 01/01/2012
 Added translation support
 Added separate formats per language
+
+01/03/2012
+Fixed translation for user-defined date() formats
