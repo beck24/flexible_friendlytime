@@ -99,7 +99,7 @@ function flexible_friendlytime_hook_handler($hook, $type, $return, $params) {
 
 //
 // This function makes dates translatable to current language
-function flexible_friendlytime_translate($dateformat, $time){
+function flexible_friendlytime_translate($dateformat, $time = NULL){
   if(empty($time) && $time !== 0){
     $time = time();
   }

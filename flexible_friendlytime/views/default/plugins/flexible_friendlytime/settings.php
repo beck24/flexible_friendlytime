@@ -64,7 +64,7 @@ foreach($languages as $langpath){
   	'options_values' => $options_values, 
   );
 
-  echo elgg_view('input/pulldown', $params);
+  echo elgg_view('input/dropdown', $params);
 
   echo "&nbsp;&nbsp;&nbsp;&nbsp;";
   $field = 'format1override' . $language;
@@ -82,7 +82,7 @@ foreach($languages as $langpath){
   $field = 'format2' . $language;
   $params['name'] = 'params[format2' . $language . ']';
   $params['value'] = !empty($vars['entity']->$field) ? $vars['entity']->$field : 1;
-  echo elgg_view('input/pulldown', $params);
+  echo elgg_view('input/dropdown', $params);
 
   echo "&nbsp;&nbsp;&nbsp;&nbsp;";
   $field = 'format2override' . $language;
@@ -110,7 +110,7 @@ foreach($languages as $langpath){
     $params['options_values'][$i] = $prefix.$i;
   }
 
-  echo elgg_view('input/pulldown', $params);
+  echo elgg_view('input/dropdown', $params);
 ?>
 
 	</div>
