@@ -6,14 +6,14 @@
  * License: GPL2
  */
 
-elgg_register_event_handler('init', 'system', 'flexible_friendlytime_init');
 
 function flexible_friendlytime_init() {
   elgg_register_plugin_hook_handler('format', 'friendly:time', 'flexible_friendlytime_hook_handler');
 }
 
+
+
 function flexible_friendlytime_hook_handler($hook, $type, $return, $params) {
-  global $CONFIG;
   
   // make sure we have a language file for the selected language
   // otherwise default to english
@@ -34,11 +34,11 @@ function flexible_friendlytime_hook_handler($hook, $type, $return, $params) {
   }
   else{
     // not logged in, use site language
-    if(!in_array($CONFIG->language, $languages)){
+    if(!in_array(elgg_get_config('language'), $languages)){
       $language = 'en';
     }
     else{
-      $language = $CONFIG->language;
+      $language = elgg_get_config('language');
     } 
   }
   
@@ -124,27 +124,27 @@ function flexible_friendlytime_translate($dateformat, $time = NULL){
     }
     
     if($dateformat[$i] == "D" && $dateformat[$j] != "\\"){
-      $output .= flexible_friendlytime_translate_short_day(date("D", $time));
+      $output .= elgg_echo('flexible_friendlytime:shortday:' . date("D", $time));
       continue;
     }
     
     if($dateformat[$i] == "l" && $dateformat[$j] != "\\"){
-      $output .= flexible_friendlytime_translate_long_day(date("l", $time));
+      $output .= elgg_echo('flexible_friendlytime:longday:' . date("l", $time));
       continue;
     }
     
     if($dateformat[$i] == "F" && $dateformat[$j] != "\\"){
-      $output .= flexible_friendlytime_translate_long_month(date("F", $time));
+      $output .= elgg_echo('flexible_friendlytime:longmonth:' . date("F", $time));
       continue;
     }
     
     if($dateformat[$i] == "M" && $dateformat[$j] != "\\"){
-      $output .= flexible_friendlytime_translate_short_month(date("M", $time));
+      $output .= elgg_echo('flexible_friendlytime:shortmonth:' . date("M", $time));
       continue;
     }
     
     if(strtolower($dateformat[$i]) == "a" && $dateformat[$j] != "\\"){
-      $output .= flexible_friendlytime_translate_ampm(date($dateformat[$i], $time));
+      $output .= elgg_echo('flexible_friendlytime:' . date($dateformat[$i], $time));
       continue;
     }
     
@@ -154,158 +154,5 @@ function flexible_friendlytime_translate($dateformat, $time = NULL){
   return $output;
 }
 
-// translates longform month
-function flexible_friendlytime_translate_long_month($month){
-  switch ($month){
-    case "January":
-        return elgg_echo('flexible_friendlytime:january');
-      break;
-    case "February":
-        return elgg_echo('flexible_friendlytime:february');
-      break;
-    case "March":
-        return elgg_echo('flexible_friendlytime:march');
-      break;
-    case "April":
-        return elgg_echo('flexible_friendlytime:april');
-      break;
-    case "May":
-        return elgg_echo('flexible_friendlytime:maylong');
-      break;
-    case "June":
-        return elgg_echo('flexible_friendlytime:june');
-      break;
-    case "July":
-        return elgg_echo('flexible_friendlytime:july');
-      break;
-    case "August":
-        return elgg_echo('flexible_friendlytime:august');
-      break;
-    case "September":
-        return elgg_echo('flexible_friendlytime:september');
-      break;
-    case "October":
-        return elgg_echo('flexible_friendlytime:october');
-      break;
-    case "November":
-        return elgg_echo('flexible_friendlytime:november');
-      break;
-    case "December":
-        return elgg_echo('flexible_friendlytime:december');
-      break;
-  }
-}
 
-// translates short month format
-function flexible_friendlytime_translate_short_month($month){
-  switch ($month){
-    case "Jan":
-      return elgg_echo('flexible_friendlytime:jan');
-      break;
-    case "Feb":
-      return elgg_echo('flexible_friendlytime:feb');
-      break;
-    case "Mar":
-      return elgg_echo('flexible_friendlytime:mar');
-      break;
-    case "Apr":
-      return elgg_echo('flexible_friendlytime:apr');
-      break;
-    case "May":
-      return elgg_echo('flexible_friendlytime:mayshort');
-      break;
-    case "Jun":
-      return elgg_echo('flexible_friendlytime:jun');
-      break;
-    case "Jul":
-      return elgg_echo('flexible_friendlytime:jul');
-      break;
-    case "Aug":
-      return elgg_echo('flexible_friendlytime:aug');
-      break;
-    case "Sep":
-      return elgg_echo('flexible_friendlytime:sep');
-      break;
-    case "Oct":
-      return elgg_echo('flexible_friendlytime:oct');
-      break;
-    case "Nov":
-      return elgg_echo('flexible_friendlytime:nov');
-      break;
-    case "Dec":
-      return elgg_echo('flexible_friendlytime:dec');
-      break;  
-  }
-}
-
-// translates long form days
-function flexible_friendlytime_translate_long_day($day){
-  switch ($day){
-    case "Monday":
-      return elgg_echo('flexible_friendlytime:monday');
-      break;
-    case "Tuesday":
-      return elgg_echo('flexible_friendlytime:tuesday');
-      break;
-    case "Wednesday":
-      return elgg_echo('flexible_friendlytime:wednesday');
-      break;
-    case "Thursday":
-      return elgg_echo('flexible_friendlytime:thursday');
-      break;
-    case "Friday":
-      return elgg_echo('flexible_friendlytime:friday');
-      break;
-    case "Saturday":
-      return elgg_echo('flexible_friendlytime:saturday');
-      break;
-    case "Sunday":
-      return elgg_echo('flexible_friendlytime:sunday');
-      break;
-  }
-}
-
-// translates short form days
-function flexible_friendlytime_translate_short_day($day){
-  switch ($day){
-    case "Mon":
-      return elgg_echo('flexible_friendlytime:mon');
-      break;
-    case "Tue":
-      return elgg_echo('flexible_friendlytime:tue');
-      break;
-    case "Wed":
-      return elgg_echo('flexible_friendlytime:wed');
-      break;
-    case "Thu":
-      return elgg_echo('flexible_friendlytime:thu');
-      break;
-    case "Fri":
-      return elgg_echo('flexible_friendlytime:fri');
-      break;
-    case "Sat":
-      return elgg_echo('flexible_friendlytime:sat');
-      break;
-    case "Sun":
-      return elgg_echo('flexible_friendlytime:sun');
-      break;
-  }
-}
-
-
-function flexible_friendlytime_translate_ampm($ampm){
-  switch ($ampm){
-    case "am":
-      return elgg_echo('flexible_friendlytime:am');
-      break;
-    case "AM":
-      return elgg_echo('flexible_friendlytime:AM');
-      break;
-    case "pm":
-      return elgg_echo('flexible_friendlytime:pm');
-      break;
-    case "PM":
-      return elgg_echo('flexible_friendlytime:PM');
-      break;
-  }
-}
+elgg_register_event_handler('init', 'system', 'flexible_friendlytime_init');
