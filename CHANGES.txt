@@ -1,0 +1,15 @@
+== Version History ==
+
+1.5 (10/13/2015):
+ - code cleanup for Elgg 1.9+
+ - show settings for all installed languages
+
+01/03/2012
+Fixed translation for user-defined date() formats
+
+01/01/2012
+Added translation support
+Added separate formats per language
+
+12/31/2011
+Initial release
